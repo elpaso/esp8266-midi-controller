@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="pico.min.css">
+    <title>MIDI Controller</title>
+</head>
+
+<body>
+    <main class="container">
+        <h1>MIDI Controller</h1>
+
+
+        <p>MIDI command elements are be separated by a space, multiple (max 32) commands can be sent by separating them with a comma.
+            <br>Format: <code>COMMAND CHANNEL BYTE1 BYTE2</code> (BYTE2 is optional). Both bytes can be <code>VAR</code>.
+            <br>Example: <code>CC 1 127, PC 1 127 0</code>
+            <br>Available commands:
+            <br><code>CC</code> - Control Change
+            <br><code>PC</code> - Program Change
+            <br><code>NOTE_ON</code> - Note On
+            <br><code>NOTE_OFF</code> - Note Off
+            <br><code>KEY_PRESSURE</code> - Key Pressure
+            <br><code>PITCH_BEND</code> - Pitch Bend
+            <br><code>CHANNEL_PRESSURE</code> - Channel Pressure
+            <br><code>VAR_INC</code> - Increment <code>VAR</code>, Channel is ignored, <code>BYTE1</code> is the amount to increment by, <code>BYTE2</code> is ignored.
+            <br><code>VAR_DEC</code> - Decrement <code>VAR</code>, Channel is ignored, <code>BYTE1</code> is the amount to decrement by, <code>BYTE2</code> is ignored.
+        </p>
+
+        <form action="/set" method="post">
+
+            <div id="button1">
+                <h2>Button 1</h2>
+
+                <label for="BUTTON_1_PUSH">
+                    On push
+                    <input type="text" id="BUTTON_1_PUSH" name="BUTTON_1_PUSH" value="{{BUTTON_1_PUSH}}" placeholder="MIDI commands on push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_1_HOLD">
+                        On hold
+                        <input type="text" id="BUTTON_1_HOLD" name="BUTTON_1_HOLD" value="{{BUTTON_1_HOLD}}" placeholder="MIDI commands on hold">
+                    </label>
+                    <label for="BUTTON_1_REPEAT_FLAG">Repeat on hold
+                        <input type="checkbox" id="BUTTON_1_REPEAT_FLAG" name="BUTTON_1_REPEAT_FLAG" value="1" {{BUTTON_1_REPEAT_FLAG}}>
+                    </label>
+                </div>
+
+                <label for="BUTTON_1_DOUBLE_PUSH">
+                    On double push
+                    <input type="text" id="BUTTON_1_DOUBLE_PUSH" name="BUTTON_1_DOUBLE_PUSH" value="{{BUTTON_1_DOUBLE_PUSH}}" placeholder="MIDI commands on double push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_1_VAR_MIN">Var Min
+                        <input type="text" id="BUTTON_1_VAR_MIN" name="BUTTON_1_VAR_MIN" value="{{BUTTON_1_VAR_MIN}}">
+                    </label>
+                    <label for="BUTTON_1_VAR_MAX">Var Max
+                        <input type="text" id="BUTTON_1_VAR_MAX" name="BUTTON_1_VAR_MAX" value="{{BUTTON_1_VAR_MAX}}">
+                    </label>
+                    <label for="BUTTON_1_VAR_MAX">Current value
+                        <input type="text" id="BUTTON_1_VAR_VALUE" name="BUTTON_1_VAR_VALUE" value="{{BUTTON_1_VAR_VALUE}}">
+                    </label>
+                </div>
+            </div> <!--Button1 -->
+
+
+            <div id="button2">
+                <h2>Button 2</h2>
+
+                <label for="BUTTON_2_PUSH">
+                    On push
+                    <input type="text" id="BUTTON_2_PUSH" name="BUTTON_2_PUSH" value="{{BUTTON_2_PUSH}}" placeholder="MIDI commands on push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_2_HOLD">
+                        On hold
+                        <input type="text" id="BUTTON_2_HOLD" name="BUTTON_2_HOLD" value="{{BUTTON_2_HOLD}}" placeholder="MIDI commands on hold">
+                    </label>
+                    <label for="BUTTON_2_REPEAT_FLAG">Repeat on hold
+                        <input type="checkbox" id="BUTTON_2_REPEAT_FLAG" name="BUTTON_2_REPEAT_FLAG" value="1" {{BUTTON_2_REPEAT_FLAG}}>
+                    </label>
+                </div>
+
+                <label for="BUTTON_2_DOUBLE_PUSH">
+                    On double push
+                    <input type="text" id="BUTTON_2_DOUBLE_PUSH" name="BUTTON_2_DOUBLE_PUSH" value="{{BUTTON_2_DOUBLE_PUSH}}" placeholder="MIDI commands on double push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_2_VAR_MIN">Var Min
+                        <input type="text" id="BUTTON_2_VAR_MIN" name="BUTTON_2_VAR_MIN" value="{{BUTTON_2_VAR_MIN}}">
+                    </label>
+                    <label for="BUTTON_2_VAR_MAX">Var Max
+                        <input type="text" id="BUTTON_2_VAR_MAX" name="BUTTON_2_VAR_MAX" value="{{BUTTON_2_VAR_MAX}}">
+                    </label>
+                    <label for="BUTTON_2_VAR_MAX">Current value
+                        <input type="text" id="BUTTON_2_VAR_VALUE" name="BUTTON_2_VAR_VALUE" value="{{BUTTON_2_VAR_VALUE}}">
+                    </label>
+                </div>
+            </div> <!--Button2 -->
+
+            <div id="button3">
+                <h2>Button 3</h2>
+
+                <label for="BUTTON_3_PUSH">
+                    On push
+                    <input type="text" id="BUTTON_3_PUSH" name="BUTTON_3_PUSH" value="{{BUTTON_3_PUSH}}" placeholder="MIDI commands on push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_3_HOLD">
+                        On hold
+                        <input type="text" id="BUTTON_3_HOLD" name="BUTTON_3_HOLD" value="{{BUTTON_3_HOLD}}" placeholder="MIDI commands on hold">
+                    </label>
+                    <label for="BUTTON_3_REPEAT_FLAG">Repeat on hold
+                        <input type="checkbox" id="BUTTON_3_REPEAT_FLAG" name="BUTTON_3_REPEAT_FLAG" value="1" {{BUTTON_3_REPEAT_FLAG}}>
+                    </label>
+                </div>
+
+                <label for="BUTTON_3_DOUBLE_PUSH">
+                    On double push
+                    <input type="text" id="BUTTON_3_DOUBLE_PUSH" name="BUTTON_3_DOUBLE_PUSH" value="{{BUTTON_3_DOUBLE_PUSH}}" placeholder="MIDI commands on double push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_3_VAR_MIN">Var Min
+                        <input type="text" id="BUTTON_3_VAR_MIN" name="BUTTON_3_VAR_MIN" value="{{BUTTON_3_VAR_MIN}}">
+                    </label>
+                    <label for="BUTTON_3_VAR_MAX">Var Max
+                        <input type="text" id="BUTTON_3_VAR_MAX" name="BUTTON_3_VAR_MAX" value="{{BUTTON_3_VAR_MAX}}">
+                    </label>
+                    <label for="BUTTON_3_VAR_MAX">Current value
+                        <input type="text" id="BUTTON_3_VAR_VALUE" name="BUTTON_3_VAR_VALUE" value="{{BUTTON_3_VAR_VALUE}}">
+                    </label>
+                </div>
+
+            </div> <!--Button3 -->
+
+            <div id="button4">
+                <h2>Button 4</h2>
+
+                <label for="BUTTON_4_PUSH">
+                    On push
+                    <input type="text" id="BUTTON_4_PUSH" name="BUTTON_4_PUSH" value="{{BUTTON_4_PUSH}}" placeholder="MIDI commands on push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_4_HOLD">
+                        On hold
+                        <input type="text" id="BUTTON_4_HOLD" name="BUTTON_4_HOLD" value="{{BUTTON_4_HOLD}}" placeholder="MIDI commands on hold">
+                    </label>
+                    <label for="BUTTON_4_REPEAT_FLAG">Repeat on hold
+                        <input type="checkbox" id="BUTTON_4_REPEAT_FLAG" name="BUTTON_4_REPEAT_FLAG" value="1" {{BUTTON_4_REPEAT_FLAG}}>
+                    </label>
+                </div>
+
+                <label for="BUTTON_4_DOUBLE_PUSH">
+                    On double push
+                    <input type="text" id="BUTTON_4_DOUBLE_PUSH" name="BUTTON_4_DOUBLE_PUSH" value="{{BUTTON_4_DOUBLE_PUSH}}" placeholder="MIDI commands on double push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_4_VAR_MIN">Var Min
+                        <input type="text" id="BUTTON_4_VAR_MIN" name="BUTTON_4_VAR_MIN" value="{{BUTTON_4_VAR_MIN}}">
+                    </label>
+                    <label for="BUTTON_4_VAR_MAX">Var Max
+                        <input type="text" id="BUTTON_4_VAR_MAX" name="BUTTON_4_VAR_MAX" value="{{BUTTON_4_VAR_MAX}}">
+                    </label>
+                    <label for="BUTTON_4_VAR_MAX">Current value
+                        <input type="text" id="BUTTON_4_VAR_VALUE" name="BUTTON_4_VAR_VALUE" value="{{BUTTON_4_VAR_VALUE}}">
+                    </label>
+                </div>
+
+            </div> <!--Button4 -->
+
+            <div id="button5">
+                <h2>Button 5</h2>
+
+                <label for="BUTTON_5_PUSH">
+                    On push
+                    <input type="text" id="BUTTON_5_PUSH" name="BUTTON_5_PUSH" value="{{BUTTON_5_PUSH}}" placeholder="MIDI commands on push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_5_HOLD">
+                        On hold
+                        <input type="text" id="BUTTON_5_HOLD" name="BUTTON_5_HOLD" value="{{BUTTON_5_HOLD}}" placeholder="MIDI commands on hold">
+                    </label>
+                    <label for="BUTTON_5_REPEAT_FLAG">Repeat on hold
+                        <input type="checkbox" id="BUTTON_5_REPEAT_FLAG" name="BUTTON_5_REPEAT_FLAG" value="1" {{BUTTON_5_REPEAT_FLAG}}>
+                    </label>
+                </div>
+
+                <label for="BUTTON_5_DOUBLE_PUSH">
+                    On double push
+                    <input type="text" id="BUTTON_5_DOUBLE_PUSH" name="BUTTON_5_DOUBLE_PUSH" value="{{BUTTON_5_DOUBLE_PUSH}}" placeholder="MIDI commands on double push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_5_VAR_MIN">Var Min
+                        <input type="text" id="BUTTON_5_VAR_MIN" name="BUTTON_5_VAR_MIN" value="{{BUTTON_5_VAR_MIN}}">
+                    </label>
+                    <label for="BUTTON_5_VAR_MAX">Var Max
+                        <input type="text" id="BUTTON_5_VAR_MAX" name="BUTTON_5_VAR_MAX" value="{{BUTTON_5_VAR_MAX}}">
+                    </label>
+                    <label for="BUTTON_5_VAR_MAX">Current value
+                        <input type="text" id="BUTTON_5_VAR_VALUE" name="BUTTON_5_VAR_VALUE" value="{{BUTTON_5_VAR_VALUE}}">
+                    </label>
+                </div>
+
+            </div> <!--Button5 -->
+
+            <div id="button6">
+                <h2>Button 6</h2>
+
+                <label for="BUTTON_6_PUSH">
+                    On push
+                    <input type="text" id="BUTTON_6_PUSH" name="BUTTON_6_PUSH" value="{{BUTTON_6_PUSH}}" placeholder="MIDI commands on push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_6_HOLD">
+                        On hold
+                        <input type="text" id="BUTTON_6_HOLD" name="BUTTON_6_HOLD" value="{{BUTTON_6_HOLD}}" placeholder="MIDI commands on hold">
+                    </label>
+                    <label for="BUTTON_6_REPEAT_FLAG">Repeat on hold
+                        <input type="checkbox" id="BUTTON_6_REPEAT_FLAG" name="BUTTON_6_REPEAT_FLAG" value="1" {{BUTTON_6_REPEAT_FLAG}}>
+                    </label>
+                </div>
+
+                <label for="BUTTON_6_DOUBLE_PUSH">
+                    On double push
+                    <input type="text" id="BUTTON_6_DOUBLE_PUSH" name="BUTTON_6_DOUBLE_PUSH" value="{{BUTTON_6_DOUBLE_PUSH}}" placeholder="MIDI commands on double push">
+                </label>
+
+                <div class="grid">
+                    <label for="BUTTON_6_VAR_MIN">Var Min
+                        <input type="text" id="BUTTON_6_VAR_MIN" name="BUTTON_6_VAR_MIN" value="{{BUTTON_6_VAR_MIN}}">
+                    </label>
+                    <label for="BUTTON_6_VAR_MAX">Var Max
+                        <input type="text" id="BUTTON_6_VAR_MAX" name="BUTTON_6_VAR_MAX" value="{{BUTTON_6_VAR_MAX}}">
+                    </label>
+                    <label for="BUTTON_6_VAR_MAX">Current value
+                        <input type="text" id="BUTTON_6_VAR_VALUE" name="BUTTON_6_VAR_VALUE" value="{{BUTTON_6_VAR_VALUE}}">
+                    </label>
+                </div>
+
+            </div> <!--Button6 -->
+
+            <button type="submit">Submit</button>
+
+        </form>
+    </main>
+</body>
+
+</html>
